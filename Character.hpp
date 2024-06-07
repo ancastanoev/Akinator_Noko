@@ -16,4 +16,4 @@ public:
     bool operator==(const Character& other) const;
 };
 
-#endif // CHARACTER_H
+#endif 
