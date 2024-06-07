@@ -10,7 +10,7 @@ std::ostream& operator<<(std::ostream& os, const Character& character) {
     for (const auto& response : character.responses) {
         os << response << " ";
     }
-    SetColor(7); // Reset to default color
+    SetColor(7); 
     return os;
 }
 
