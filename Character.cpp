@@ -5,7 +5,7 @@ Character::Character(const std::string& name, const std::vector<std::string>& re
     : name(name), responses(responses) {}
 
 std::ostream& operator<<(std::ostream& os, const Character& character) {
-    SetColor(13); // Magenta
+    SetColor(13); 
     os << "Character Name: " << character.name << "\nResponses: ";
     for (const auto& response : character.responses) {
         os << response << " ";
