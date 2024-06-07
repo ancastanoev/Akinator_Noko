@@ -84,7 +84,7 @@ void Game::askQuestions() {
     std::vector<bool> asked_questions(questions.size(), false);
 
     for (size_t idx : shuffled_indices) {
-        // Skip questions that have been answered with "dn"
+        // Skip questions that have been answered with "dk"
         if (asked_questions[idx]) continue;
 
         do {
