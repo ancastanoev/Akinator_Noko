@@ -136,7 +136,7 @@ void Game::askQuestions() {
             } else {
                 // Ask for the correct character 
                 std::string character_name;
-                SetColor(11); // Cyan
+                SetColor(11); 
                 std::cout << "Who is the character you were thinking of? ";
                 std::cin.ignore();
                 getline(std::cin, character_name);
@@ -159,9 +159,9 @@ void Game::askQuestions() {
             std::transform(add_new.begin(), add_new.end(), add_new.begin(), ::tolower);
             if (add_new == "yes") {
                 std::string character_name;
-                SetColor(11); // Cyan
+                SetColor(11); 
                 std::cout << "Enter the name of the character: ";
-                std::cin.ignore(); // Clear the input buffer
+                std::cin.ignore(); 
                 getline(std::cin, character_name);
                 addNewCharacter(character_name);
             }
