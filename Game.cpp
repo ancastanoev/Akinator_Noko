@@ -126,12 +126,12 @@ void Game::askQuestions() {
         // Stop searching if only one character matches
         
         if (possible_characters.size() == 1) {
-            SetColor(14); // Yellow
+            SetColor(14); 
             std::cout << "Is it " << possible_characters[0]->name << "? (yes/no): ";
             std::cin >> answer;
             std::transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
             if (answer == "yes") {
-                SetColor(10); // Green
+                SetColor(10); 
                 std::cout << "GREAT! I GUESSED IT RIGHT!" << std::endl;
             } else {
                 // Ask for the correct character 
@@ -142,8 +142,8 @@ void Game::askQuestions() {
                 getline(std::cin, character_name);
                 addNewCharacter(character_name);
             }
-            SetColor(7); // Reset to default color
-            return; // Stop searching
+            SetColor(7); 
+            return; 
         }
 
         // Stop searching if no characters match
