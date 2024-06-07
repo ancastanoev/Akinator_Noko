@@ -12,7 +12,7 @@ Game::Game(const std::string& filename) : database(filename) {
         "Is your character from a TV show?", "Is your character animated?", "Is your character from a video game?",
         "Does your character have superpowers?", "Is your character from a book?", "Is your character a politician?",
         "Is your character dead?", "Is your character from a comic book?", "Is your character over 50 years old?",
-        "Does your character have children?", "Is your character married?", "Is your character a sports figure?", "Is your character a historical figure?", "is your character a scientist?"
+        "Does your character have children?", "Is your character married?",  "Is your character a historical figure?", "is your character a scientist?", "Is your character a sports figure?"
     };
     current_responses.resize(questions.size(), "I don't know");
 }
@@ -100,7 +100,7 @@ void Game::askQuestions() {
         } while (answer != "yes" && answer != "no" && answer != "dk");
 
         // Mark the question as asked if not "dn"
-        if (answer == "dn") {
+        if (answer == "dk") {
             asked_questions[idx] = true;
             continue;
         } else {
@@ -188,7 +188,7 @@ void Game::askQuestions() {
                 } while (answer != "yes" && answer != "no" && answer != "dk");
 
                 // Mark the question as asked if not "dn"
-                if (answer == "dn") {
+                if (answer == "dk") {
                     asked_questions[idx] = true;
                     continue;
                 } else {
@@ -298,19 +298,27 @@ void Game::play() {
         SetColor(10); // Green
         std::cout << "Enter your choice: ";
 
-        int choice;
+       int choice;
         std::cin >> choice;
 
-        if (choice == 1) {
-            printGenie();
-            askQuestions();
-        } else if (choice == 2) {
-            SetColor(10); // Green
-            std::cout << "GOODBYE! IT WAS A PLEASURE!" << std::endl;
-            break;
-        } else {
+        // Check if the input is not an integer
+        if (std::cin.fail()) {
+            std::cin.clear(); // Clear the error flag
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore the rest of the input
             SetColor(12); // Red
-            std::cout << "Invalid choice. Please try again." << std::endl;
+            std::cout << "Invalid choice. Please enter a number." << std::endl;
+        } else {
+            if (choice == 1) {
+                printGenie();
+                askQuestions();
+            } else if (choice == 2) {
+                SetColor(10); // Green
+                std::cout << "GOODBYE! IT WAS A PLEASURE!" << std::endl;
+                break;
+            } else {
+                SetColor(12); // Red
+                std::cout << "Invalid choice. Please try again." << std::endl;
+            }
         }
         SetColor(7); // Reset to default color
     }
