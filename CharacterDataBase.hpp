@@ -21,4 +21,4 @@ public:
     bool hasSameResponsePattern(const std::shared_ptr<Character>& target) const;
 };
 
-#endif // CHARACTERDATABASE_H
+#endif 
