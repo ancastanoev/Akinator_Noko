@@ -148,11 +148,11 @@ void Game::askQuestions() {
 
         // Stop searching if no characters match
         if (possible_characters.empty()) {
-            SetColor(12); // Red
+            SetColor(12); 
             std::cout << "No matching character found." << std::endl;
 
             // Ask if the user wants to add a new character
-            SetColor(11); // Cyan
+            SetColor(11); 
             std::cout << "Would you like to add this character to the database? (yes/no): ";
             std::string add_new;
             std::cin >> add_new;
@@ -177,13 +177,13 @@ void Game::askQuestions() {
                 if (asked_questions[idx]) continue;
 
                 do {
-                    SetColor(14); // Yellow
+                    SetColor(14); 
                     std::cout << questions[idx] << " (yes/no/dk): ";
                     std::cin >> answer;
                     std::transform(answer.begin(), answer.end(), answer.begin(), ::tolower); // Convert to lowercase for consistency
 
                     if (answer != "yes" && answer != "no" && answer != "dk") {
-                        SetColor(12); // Red
+                        SetColor(12); 
                         std::cout << "Invalid input. Please enter 'yes', 'no', or 'dk'." << std::endl;
                     }
                 } while (answer != "yes" && answer != "no" && answer != "dk");
@@ -213,12 +213,12 @@ void Game::askQuestions() {
 
                 // Stop searching if only one character matches
                 if (possible_characters.size() == 1) {
-                    SetColor(14); // Yellow
+                    SetColor(14); 
                     std::cout << "Is it " << possible_characters[0]->name << "? (yes/no): ";
                     std::cin >> answer;
                     std::transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
                     if (answer == "yes") {
-                        SetColor(10); // Green
+                        SetColor(10); 
                         std::cout << "Great! I guessed it right!" << std::endl;
                     } else {
                         // Ask for the correct character and add a new question if necessary
@@ -261,7 +261,7 @@ void Game::askQuestions() {
 
     // If multiple characters match, ask about each character one by one
     if (!possible_characters.empty()) {
-        SetColor(14); // Yellow
+        SetColor(14); 
         std::cout << " THOUGH ONE. LET'S NARROW IT DOWN FURTHER." << std::endl;
         for (const auto& character : possible_characters) {
             SetColor(14); 
@@ -306,7 +306,7 @@ void Game::play() {
             std::cin.clear(); 
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
             
-            SetColor(12); // Red
+            SetColor(12); 
             std::cout << "Invalid choice. Please enter a number." << std::endl;
         } else {
             if (choice == 1) {
