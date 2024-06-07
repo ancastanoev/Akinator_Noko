@@ -16,7 +16,7 @@ void printGenie() {
                                               .~)))))>>       .-~))>>)>
                                             .~)))>>))))>>  .-~)>>)>
     )";
-    SetColor(13); // Magenta
+    SetColor(13); 
     std::cout << R"(
                         )                 .~))>>))))>>  .-~)))))>>)>
                      ( )@@*)             //)>))))))  .-~))))>>)>
@@ -28,7 +28,7 @@ void printGenie() {
          (( @@@(.@(@ .    _/`-`  ~|b |>))) //)>>)))))))>>)>
           )* @@@ )@*     (@) (@)  /\b|))) //))))))>>))))>>
     )";
-    SetColor(14); // Yellow
+    SetColor(14); 
     std::cout << R"(
         (( @. )@( @ .   _/       /  \b)) //))>>)))))>>>_._
          )@@ (@@*)@@.  (6,   6) / ^  \b)//))))))>>)))>>   ~~-.
@@ -37,7 +37,7 @@ void printGenie() {
         ((@@).*@@ )@ )    `-'   ((   ^  ~)_          /             `,
           (@@. (@@ ).           (((   ^    `\        |               `.
     )";
-    SetColor(10); // Green
+    SetColor(10); 
     std::cout << R"(
             (*.@*              / ((((        \        \      .         `.
                               /   (((((  \    \    _.-~\     Y,         ;
@@ -51,9 +51,9 @@ void printGenie() {
                                                    :    ,'
                                                    ~~~~~
     )";
-    SetColor(11); // Cyan
+    SetColor(11); 
     std::cout << R"(
           HELLO! I'M NOKO, THE GUESSING MASTER. PLAY MY GAME...IF YOU DARE!!!
     )";
-    SetColor(7); // Reset to default color
+    SetColor(7); 
 }
