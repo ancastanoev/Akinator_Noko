@@ -53,10 +53,9 @@ void Game::askQuestions() {
     std::vector<int> question_indices(questions.size());
     std::iota(question_indices.begin(), question_indices.end(), 0);
 
-    // Static variable to keep track of the last used first question
     static int last_first_question_idx = -1;
 
-    // Select a different first question index
+    // Select a different first question index to alwys have randomized questions
     int first_question_idx;
     do {
         first_question_idx = std::rand() % questions.size();
@@ -64,7 +63,7 @@ void Game::askQuestions() {
 
     last_first_question_idx = first_question_idx;
 
-    // Create a vector of the remaining questions
+   
     std::vector<int> remaining_indices;
     for (size_t i = 0; i < question_indices.size(); ++i) {
         if (i != first_question_idx) {
@@ -77,7 +76,7 @@ void Game::askQuestions() {
     std::mt19937 g(rd());
     std::shuffle(remaining_indices.begin(), remaining_indices.end(), g);
 
-    // Combine the first question with the shuffled remaining questions
+    
     std::vector<int> shuffled_indices = {first_question_idx};
     shuffled_indices.insert(shuffled_indices.end(), remaining_indices.begin(), remaining_indices.end());
 
@@ -88,18 +87,19 @@ void Game::askQuestions() {
         if (asked_questions[idx]) continue;
 
         do {
-            SetColor(14); // Yellow
+            SetColor(14); 
             std::cout << questions[idx] << " (yes/no/dk): ";
             std::cin >> answer;
-            std::transform(answer.begin(), answer.end(), answer.begin(), ::tolower); // Convert to lowercase for consistency
+            std::transform(answer.begin(), answer.end(), answer.begin(), ::tolower); 
 
             if (answer != "yes" && answer != "no" && answer != "dk") {
-                SetColor(12); // Red
+                SetColor(12);
                 std::cout << "Invalid input. Please enter 'yes', 'no', or 'dk'." << std::endl;
             }
         } while (answer != "yes" && answer != "no" && answer != "dk");
 
-        // Mark the question as asked if not "dn"
+        // Mark the question as asked if not "dk"
+
         if (answer == "dk") {
             asked_questions[idx] = true;
             continue;
@@ -107,7 +107,7 @@ void Game::askQuestions() {
             asked_questions[idx] = true;
         }
 
-        // Save the response
+        
         current_responses[idx] = (answer == "yes" ? "Yes" : "No");
 
         // Filter characters based on user response
@@ -124,6 +124,7 @@ void Game::askQuestions() {
 
 
         // Stop searching if only one character matches
+        
         if (possible_characters.size() == 1) {
             SetColor(14); // Yellow
             std::cout << "Is it " << possible_characters[0]->name << "? (yes/no): ";
@@ -164,8 +165,8 @@ void Game::askQuestions() {
                 getline(std::cin, character_name);
                 addNewCharacter(character_name);
             }
-            SetColor(7); // Reset to default color
-            return; // Stop searching
+            SetColor(7); 
+            return;
         }
 
         // If two or more characters remain, ask differentiating questions
@@ -187,7 +188,7 @@ void Game::askQuestions() {
                     }
                 } while (answer != "yes" && answer != "no" && answer != "dk");
 
-                // Mark the question as asked if not "dk"
+               
                 if (answer == "dk") {
                     asked_questions[idx] = true;
                     continue;
@@ -195,7 +196,7 @@ void Game::askQuestions() {
                     asked_questions[idx] = true;
                 }
 
-                // Save the response
+               
                 current_responses[idx] = (answer == "yes" ? "Yes" : "No");
 
                 // Filter characters based on user response
@@ -222,37 +223,37 @@ void Game::askQuestions() {
                     } else {
                         // Ask for the correct character and add a new question if necessary
                         std::string character_name;
-                        SetColor(11); // Cyan
+                        SetColor(11); 
                         std::cout << "Who is the character you were thinking of? ";
                         std::cin.ignore();
                         getline(std::cin, character_name);
                         addNewCharacter(character_name);
                     }
-                    SetColor(7); // Reset to default color
-                    return; // Stop searching
+                    SetColor(7); 
+                    return; 
                 }
 
                 // Stop searching if no characters match
                 if (possible_characters.empty()) {
-                    SetColor(12); // Red
+                    SetColor(12); 
                     std::cout << "No matching character found." << std::endl;
 
-                    // Ask if the user wants to add a new character
-                    SetColor(11); // Cyan
+                
+                    SetColor(11); 
                     std::cout << "Would you like to add this character to the database? (yes/no): ";
                     std::string add_new;
                     std::cin >> add_new;
                     std::transform(add_new.begin(), add_new.end(), add_new.begin(), ::tolower);
                     if (add_new == "yes") {
                         std::string character_name;
-                        SetColor(11); // Cyan
+                        SetColor(11); 
                         std::cout << "Enter the name of the character: ";
-                        std::cin.ignore(); // Clear the input buffer
+                        std::cin.ignore();
                         getline(std::cin, character_name);
                         addNewCharacter(character_name);
                     }
-                    SetColor(7); // Reset to default color
-                    return; // Stop searching
+                    SetColor(7); 
+                    return;
                 }
             }
         }
@@ -263,20 +264,20 @@ void Game::askQuestions() {
         SetColor(14); // Yellow
         std::cout << " THOUGH ONE. LET'S NARROW IT DOWN FURTHER." << std::endl;
         for (const auto& character : possible_characters) {
-            SetColor(14); // Yellow
+            SetColor(14); 
             std::cout << "Is it " << character->name << "? (yes/no): ";
             std::cin >> answer;
             std::transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
             if (answer == "yes") {
-                SetColor(10); // Green
+                SetColor(10); 
                 std::cout << "GREAT! I GUESSED IT RIGHT!" << std::endl;
                 SetColor(7); 
                 return; 
             }
         }
 
-        // If none of the characters matched, ask for the correct character
-        SetColor(12); // Red
+    
+        SetColor(12); 
         std::cout << "None of the guessed characters matched. Who is the character you were thinking of? ";
         std::string character_name;
         std::cin.ignore();
@@ -289,18 +290,18 @@ void Game::askQuestions() {
 
 void Game::play() {
     while (true) {
-        SetColor(10); // Green
+        SetColor(10); 
         std::cout << std::endl;
-        SetColor(9); // Blue
+        SetColor(9); 
         std::cout << "1. Play Game" << std::endl;
         std::cout << "2. Exit" << std::endl;
-        SetColor(10); // Green
+        SetColor(10);
         std::cout << "Enter your choice: ";
 
        int choice;
         std::cin >> choice;
 
-        // Check if the input is not an integer
+     // Check   input 
         if (std::cin.fail()) {
             std::cin.clear(); 
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
@@ -312,11 +313,11 @@ void Game::play() {
                 printGenie();
                 askQuestions();
             } else if (choice == 2) {
-                SetColor(10); // Green
+                SetColor(10); 
                 std::cout << "GOODBYE! IT WAS A PLEASURE!" << std::endl;
                 break;
             } else {
-                SetColor(12); // Red
+                SetColor(12); 
                 std::cout << "Invalid choice. Please try again." << std::endl;
             }
         }
