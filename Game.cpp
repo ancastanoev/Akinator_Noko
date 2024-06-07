@@ -133,7 +133,7 @@ void Game::askQuestions() {
                 SetColor(10); // Green
                 std::cout << "GREAT! I GUESSED IT RIGHT!" << std::endl;
             } else {
-                // Ask for the correct character and add a new question if necessary
+                // Ask for the correct character 
                 std::string character_name;
                 SetColor(11); // Cyan
                 std::cout << "Who is the character you were thinking of? ";
@@ -172,7 +172,7 @@ void Game::askQuestions() {
         if (possible_characters.size() > 1 && possible_characters.size() <= 5) {
             std::vector<int> differentiating_questions = getDifferentiatingQuestions(possible_characters);
             for (size_t idx : differentiating_questions) {
-                // Skip questions that have been answered with "dn"
+                // Skip questions that have been answered with "dk"
                 if (asked_questions[idx]) continue;
 
                 do {
@@ -187,7 +187,7 @@ void Game::askQuestions() {
                     }
                 } while (answer != "yes" && answer != "no" && answer != "dk");
 
-                // Mark the question as asked if not "dn"
+                // Mark the question as asked if not "dk"
                 if (answer == "dk") {
                     asked_questions[idx] = true;
                     continue;
@@ -208,9 +208,7 @@ void Game::askQuestions() {
                     }
                 }
                 possible_characters = filtered_characters;
-
-                // Debugging output
-                //SetColor(11); // Cyan
+                
 
                 // Stop searching if only one character matches
                 if (possible_characters.size() == 1) {
@@ -272,8 +270,8 @@ void Game::askQuestions() {
             if (answer == "yes") {
                 SetColor(10); // Green
                 std::cout << "GREAT! I GUESSED IT RIGHT!" << std::endl;
-                SetColor(7); // Reset to default color
-                return; // Stop searching
+                SetColor(7); 
+                return; 
             }
         }
 
@@ -284,7 +282,8 @@ void Game::askQuestions() {
         std::cin.ignore();
         getline(std::cin, character_name);
         addNewCharacter(character_name);
-        SetColor(7); // Reset to default color
+        SetColor(7); 
+        
     }
 }
 
@@ -303,8 +302,9 @@ void Game::play() {
 
         // Check if the input is not an integer
         if (std::cin.fail()) {
-            std::cin.clear(); // Clear the error flag
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore the rest of the input
+            std::cin.clear(); 
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+            
             SetColor(12); // Red
             std::cout << "Invalid choice. Please enter a number." << std::endl;
         } else {
@@ -320,6 +320,7 @@ void Game::play() {
                 std::cout << "Invalid choice. Please try again." << std::endl;
             }
         }
-        SetColor(7); // Reset to default color
+        SetColor(7); 
+        
     }
 }
