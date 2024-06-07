@@ -20,9 +20,9 @@ Game::Game(const std::string& filename) : database(filename) {
 void Game::addNewCharacter(const std::string& character_name) {
     auto new_character = std::make_shared<Character>(character_name, current_responses);
     database.addCharacter(new_character);
-    SetColor(10); // Green
+    SetColor(10); 
     std::cout << "Character added successfully." << std::endl;
-    SetColor(7); // Reset to default color
+    SetColor(7); 
 }
 
 std::vector<int> Game::getDifferentiatingQuestions(const std::vector<std::shared_ptr<Character>>& characters) {
