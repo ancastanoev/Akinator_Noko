@@ -4,4 +4,4 @@
 void SetColor(int color);
 void printGenie();
 
-#endif // UTILS_H
+#endif 
